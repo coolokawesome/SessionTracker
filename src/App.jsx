@@ -4,6 +4,7 @@ import axios from 'axios'
 
 function App() {
   const [keyStrokes, setKeyStrokes] = useState('')
+  const [keyNum, setKeyNum] = useState(0)
   const [arrival, setArrival] = useState('')
   const [departure, setDeparture] = useState('')
   const [clicks, setClicks] = useState(0)
@@ -14,44 +15,71 @@ function App() {
   useEffect(() => {
     axios.get(`${APIURL}/click/`).then(res => console.log(res)).finally(null)
     setArrival(new Date())}, [])
-  //handle the session ending
-  const handleReport = () => {
-    const departureTime = new Date()
-    const arrivalTime = arrival
-    const handleSession = (arrDate, depDate) => {
-      const ahr = String(arrDate.getHours())
-      const amn = String(arrDate.getMinutes())
-      const asc = String(arrDate.getSeconds())
-      const dhr = String(depDate.getHours())
-      const dmn = String(depDate.getMinutes())
-      const dsc = String(depDate.getSeconds())
-      const shr = dhr - ahr;
-      const smn = dmn - amn;
-      const ssc = dsc - asc;
-      return `${shr}H:${smn}M:${ssc}S`
-    }
-    
 
-    setReport(
-      'session start: ' + arrivalTime + '\n' +
-      'session end: ' + departureTime + '\n' + 
-      'total session time: ' + handleSession(arrivalTime, departureTime) )
-  }
+    const handleReport = async () => {
+      try {
+        setDeparture(new Date())
+        const departureTime = departure
+        const requestBody = new URLSearchParams();
+        requestBody.append('departureTime', departureTime);
+        requestBody.append('arrivalTime', arrival);
+        requestBody.append('keyStrokes', keyStrokes);
+        requestBody.append('keyNum', keyNum);
+    
+        const response = await axios.post(`${APIURL}/report/timestamp`, requestBody);
+        setReport(response.data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  //handle the session ending
+  // const handlePostReport = () => {
+  //   const departureTime = new Date()
+  //   const arrivalTime = arrival
+  //   const handleSession = (arrDate, depDate) => {
+  //     const sessionDuration = depDate - arrDate; 
+  //     const hours = Math.floor(sessionDuration / (1000 * 60 * 60));
+  //     const minutes = Math.floor((sessionDuration % (1000 * 60 * 60)) / (1000 * 60));
+  //     const seconds = Math.floor((sessionDuration % (1000 * 60)) / 1000);
+  //     const formattedTime = `${hours}H:${minutes}M:${seconds}S`;
+  //     return formattedTime;
+  //   };
+  //     setReport(
+  //     'session start: ' + arrivalTime + '\n' +
+  //     'session end: ' + departureTime + '\n' + 
+  //     'total session time: ' + handleSession(arrivalTime, departureTime) + '\n' + 
+  //     'keys pressed: ' + keyStrokes + '\n' + 
+  //     'total keys pressed: ' + keyNum)
+  // }
+
+
+console.log(keyNum)
   const handleKeyStrokes = (e) => {
     const newKey = e.target.value.charAt(e.target.value.length - 1)
     console.log('Key Stroke: ' + newKey)
     const newKeyArray = [keyStrokes]
     setKeyStrokes([...newKeyArray, newKey])
-  }
+    const newKeyNum = keyNum + 1
+    setKeyNum(newKeyNum)
+  } 
+   useEffect(() => {
+    const handleMouseClick = () => {
+      setClicks((prevCounter) => prevCounter + 1);
+    };document.addEventListener('click', handleMouseClick);
+    return () => {
+      document.removeEventListener('click', handleMouseClick);
+    };
+  }, []);
 
   return (
  <>
 <div className='container'>
+  <div>Mouse Clicks: {clicks}</div>
     <div className='row'>
       <h1>Session Tracker</h1>
       <div className='col-12 text-col'>
         <h5>Type Some Text</h5>
-        <textarea onKeyUp={handleKeyStrokes} defaultValue={keyStrokes} id='TextArea'></textarea>
+        <textarea onChange={handleKeyStrokes} defaultValue={keyStrokes} id='TextArea'></textarea>
         
       </div>
       <div className='col-12 buttons-col'>
