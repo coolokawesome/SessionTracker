@@ -4,10 +4,11 @@ import  bodyParser from 'body-parser';
 const app = express()
 
 const port = process.env.PORT || 3000
+//cors and body parsing
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+//post endpoint for the session summary
 app.post('/report/timestamp', (req, res) => {
     const body = req.body;
     console.log('body: ' + req.body);
@@ -25,10 +26,9 @@ app.post('/report/timestamp', (req, res) => {
       `session end: ${new Date()}\n` +
       `total session time: ${handleSession(new Date(body.arrivalTime), new Date())}\n` +
       `keys pressed: ${body.keyStrokes}\n` +
-      `total keys pressed: ${body.keyNum}`;
-  
-    // You can perform additional backend logic here if needed
-  
+      `total keys pressed: ${body.keyNum}\n` +
+      `total mouse clicks: ${body.clicks}`;
+
     // Send the report as plain text response
     res.type('text').send(report);
   });

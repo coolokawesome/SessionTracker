@@ -25,6 +25,7 @@ function App() {
         requestBody.append('arrivalTime', arrival);
         requestBody.append('keyStrokes', keyStrokes);
         requestBody.append('keyNum', keyNum);
+        requestBody.append('clicks', clicks)
     
         const response = await axios.post(`${APIURL}/report/timestamp`, requestBody);
         setReport(response.data)
@@ -74,9 +75,8 @@ console.log(keyNum)
   return (
  <>
 <div className='container'>
-  <div>Mouse Clicks: {clicks}</div>
     <div className='row'>
-      <h1>Session Tracker</h1>
+      <h1>Productivity Monitor</h1>
       <div className='col-12 text-col'>
         <h5>Type Some Text</h5>
         <textarea onChange={handleKeyStrokes} defaultValue={keyStrokes} id='TextArea'></textarea>
@@ -95,9 +95,8 @@ console.log(keyNum)
       <div className='col-12 report-col'>
         {report == null ? <></> : 
           <div className='report'>
-            <h5>Report</h5>
-            <textarea className='report-block' readOnly={true} rows={30} cols={100} value={report}>
-              
+            <h5>Session summary</h5>
+            <textarea className='report-block' readOnly={true} rows={30} cols={80} value={report}>
             </textarea>
           </div>}
       </div>
