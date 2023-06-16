@@ -1,8 +1,10 @@
 @import url('./assets/grid.min.css');
-
+body {
+    font-family: 'Helvetica' !important;
+}
 .session-col {
     margin-top: 40px
 }
 .report-block {
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'Courier New', Courier, monospace !important
 }

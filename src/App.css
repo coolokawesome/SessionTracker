@@ -1,7 +1,7 @@
 
 body {
     background-color: #222323;
-    font-family: 'Helvetica';
+    font-family: 'Helvetica' !important;
 }
 h1 {
  text-align: center;
