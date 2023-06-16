@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'AG';
+    src: url('src/assets/static/Inter-Regular.ttf');
+}
+body {
+    background-color: #262631;
+    font-family: 'AG';
+}
+h1 {
+ text-align: center;
+ color: #f3f3f3
+}
+.btn-1 {
+    background: linear-gradient( 90deg, #F54b64,#F78361 );
+    padding: 10px;
+    border: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    color: white;
+    transition-duration: 0.2s;
+    border-radius: 10px;
+    transition-delay: 0.1s;
+}
+.btn-1:hover {
+    transition-duration: 0.2s;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+.btn-1:active {
+    transition-delay: 0.0s;
+    transition-duration: 0.2s;
+    transform: translateY(1px);
+}
+.main-row {
+    display: flex;
+    justify-content: center;
+}
+.text-col {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+.report-block {
+    width: 100%;
+}
+.text-area {
+    width: 100%;
+}

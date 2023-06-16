@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/report/timestamp', (req, res) => {
     const body = req.body;
     console.log('body: ' + req.body);
-  
     const handleSession = (arrDate, depDate) => {
       const sessionDuration = depDate - arrDate;
       const hours = Math.floor(sessionDuration / (1000 * 60 * 60));
@@ -21,7 +20,7 @@ app.post('/report/timestamp', (req, res) => {
       const formattedTime = `${hours}H:${minutes}M:${seconds}S`;
       return formattedTime;
     };
-  
+    //construct the response 
     const report = `session start: ${body.arrivalTime}\n` +
       `session end: ${new Date()}\n` +
       `total session time: ${handleSession(new Date(body.arrivalTime), new Date())}\n` +
