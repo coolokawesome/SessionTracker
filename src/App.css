@@ -3,12 +3,27 @@
     src: url('src/assets/static/Inter-Regular.ttf');
 }
 body {
-    background-color: #262631;
+    background-color: #222323;
     font-family: 'AG';
 }
 h1 {
  text-align: center;
  color: #f3f3f3
+}
+h5 {
+    color: #d3d3d3;
+    font-size: large;
+    text-align: center;
+}
+button {
+    margin-left: 10px;
+    margin-right: 10px
+}
+.buttons-col {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btn-1 {
     background: linear-gradient( 90deg, #F54b64,#F78361 );
@@ -19,15 +34,37 @@ h1 {
     color: white;
     transition-duration: 0.2s;
     border-radius: 10px;
-    transition-delay: 0.1s;
+    display: flex;
 }
-.btn-1:hover {
+.btn-2 {
+    background: linear-gradient( 90deg, #007aff,#2f91fa );
+    padding: 10px;
+    border: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    color: white;
+    transition-duration: 0.2s;
+    border-radius: 10px;
+}
+.btn-3 {
+    background: #e8e8e80f;
+    padding: 10px;
+    border: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    color: #2f91fa;
+    transition-duration: 0.2s;
+    border-radius: 10px;
+}
+.btn-1:hover, .btn-2:hover, .btn-3:hover {
     transition-duration: 0.2s;
     transform: translateY(-2px);
     cursor: pointer;
 }
-.btn-1:active {
-    transition-delay: 0.0s;
+.btn-3:hover {
+    background-color: #3d3e3ebb;
+}
+.btn-1:active, .btn-2:active, .btn-3:active {
     transition-duration: 0.2s;
     transform: translateY(1px);
 }
@@ -40,12 +77,29 @@ h1 {
     justify-content: center;
     text-align: center;
 }
-
+.text-area > textarea {
+    font-family: 'AG';
+}
 
 
 .report-block {
     width: 100%;
 }
-.text-area {
+textarea {
+    color: #ffffff;
     width: 100%;
+    background-color: #3d3e3e;
+    border: 1px solid gray;
+    border-radius: 10px;
+    outline: 1px solid rgb(93, 93, 93);
+    transition-duration: 0.3s;
+    resize: none;
+
+}
+textarea:focus {
+    transition-duration: 0.3s;
+    outline: 1px solid rgb(191, 191, 191)
+}
+textarea, .text-area {
+    width: 100%
 }

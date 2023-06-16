@@ -59,20 +59,22 @@ console.log(keyNum)
   return (
  <>
   <div className='container'>
-  <h1 className=''>Productivity Monitor</h1>
+  <h1 className=''>Event Recorder Demo</h1>
       <div className='row main-row'>
         
         <div className='col-6 text-col'>
           <div className='text-area'>
           <h5>Type Some Text</h5>
-          <textarea className='text-area'  rows={10} onChange={handleKeyStrokes} defaultValue={keyStrokes} id='TextArea'></textarea>
+          <textarea className='text-area' rows={10} onChange={handleKeyStrokes} defaultValue={keyStrokes} id='TextArea'></textarea>
           </div>
           
         </div>
-        <div className='col-6 buttons-col'>
+        <div className='col-6 '>
           <h5>Click Some buttons</h5>
+          <div className='buttons-col'>
           <button className='btn-2'>Primary</button>
           <button className='btn-3'>Secondary</button>
+          </div>
         </div>
         <div className='col-12 session-col'>
           <button className='btn-1' onClick={handleReport}>Get Session Summary</button>
