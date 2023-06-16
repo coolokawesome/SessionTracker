@@ -8,10 +8,10 @@ const port = process.env.PORT || 3000
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//post endpoint for the session summary
+//post API endpoint 
 app.post('/report/timestamp', (req, res) => {
     const body = req.body;
-    console.log('body: ' + req.body);
+    // console.log('body: ' + req.body);
     const handleSession = (arrDate, depDate) => {
       const sessionDuration = depDate - arrDate;
       const hours = Math.floor(sessionDuration / (1000 * 60 * 60));
