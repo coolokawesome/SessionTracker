@@ -29,7 +29,7 @@ function App() {
       requestBody.append('clicks', clicks)
       console.log(requestBody)
       //await the response and set the data to the 'report' state
-      const response = await axios.post(`${APIURL}/report/timestamp`, requestBody);
+      const response = await axios.post( `/report/timestamp`, requestBody);
       setReport(response.data)
       //catch any errors
     } catch (error) {
