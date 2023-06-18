@@ -10,7 +10,7 @@ function App() {
   const [clicks, setClicks] = useState(0)
   const [report, setReport] = useState(null)
   //local URL
-  const APIURL =`${window.location.href}:3000`;
+  const APIURL =`https://eventrecorder.vercel.app:3000`;
   //on mount, set the session's timestamp
   useEffect(() => {
     setArrival(new Date())
