@@ -9,8 +9,7 @@ function App() {
   const [departure, setDeparture] = useState('')
   const [clicks, setClicks] = useState(0)
   const [report, setReport] = useState(null)
-  //local URL
-  const APIURL =`https://eventrecorder.vercel.app:3000`;
+
   //on mount, set the session's timestamp
   useEffect(() => {
     setArrival(new Date())
@@ -29,7 +28,7 @@ function App() {
       requestBody.append('clicks', clicks)
       console.log(requestBody)
       //await the response and set the data to the 'report' state
-      const response = await axios.post( `${APIURL}/report/timestamp`, requestBody);
+      const response = await axios.post( `/report/timestamp`, requestBody);
       setReport(response.data)
       //catch any errors
     } catch (error) {
