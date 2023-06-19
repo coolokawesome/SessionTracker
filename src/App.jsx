@@ -9,7 +9,8 @@ function App() {
   const [departure, setDeparture] = useState('')
   const [clicks, setClicks] = useState(0)
   const [report, setReport] = useState(null)
-
+  //local URL
+  const APIURL ='https://eventrecorder.vercel.app';
   //on mount, set the session's timestamp
   useEffect(() => {
     setArrival(new Date())
